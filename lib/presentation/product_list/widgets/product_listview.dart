@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sreenandh_machine_test/core/colors.dart';
 import 'package:sreenandh_machine_test/presentation/product_details/product_details.dart';
 
 import '../../../application/product/product_bloc.dart';
@@ -46,7 +47,12 @@ class ProductsListView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ProductDetailsPage(),
+                          builder: (context) => ProductDetailsPage(
+                            price: productitems.price,
+                            imageUrl: productitems.images[index],
+                            name: productitems.title,
+                            description: productitems.description,
+                          ),
                         ),
                       );
                     },
@@ -61,7 +67,8 @@ class ProductsListView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: state.isLoading
-                              ? const CircularProgressIndicator(strokeWidth: 2)
+                              ? CircularProgressIndicator(
+                                  strokeWidth: 2, color: blueColor)
                               : Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -77,10 +84,13 @@ class ProductsListView extends StatelessWidget {
                                     SizedBox(
                                       width: 90,
                                       height: 80,
-                                      child: Image.network(
-                                        state.products[index].images[index],
-                                        fit: BoxFit.cover,
-                                      ),
+                                      child: state.isLoading
+                                          ? CircularProgressIndicator(
+                                              strokeWidth: 2, color: blueColor)
+                                          : Image.network(
+                                              productitems.images[index],
+                                              fit: BoxFit.cover,
+                                            ),
                                     ),
                                     const SizedBox(height: 15),
                                     Text(

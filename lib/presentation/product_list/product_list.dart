@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sreenandh_machine_test/core/colors.dart';
-
 import 'widgets/product_listview.dart';
 
 class ProductListPage extends StatelessWidget {

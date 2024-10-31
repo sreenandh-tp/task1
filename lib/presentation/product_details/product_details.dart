@@ -3,7 +3,18 @@ import 'package:flutter/material.dart';
 import '../../core/colors.dart';
 
 class ProductDetailsPage extends StatelessWidget {
-  const ProductDetailsPage({super.key});
+  final String imageUrl;
+  final String name;
+  final String description;
+  final double price;
+
+  const ProductDetailsPage({
+    super.key,
+    required this.imageUrl,
+    required this.name,
+    required this.description,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +55,22 @@ class ProductDetailsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Center(
+                  Center(
                     child: CircleAvatar(
                       radius: 100,
+                      backgroundImage: NetworkImage(imageUrl),
                     ),
                   ),
                   Text(
-                    '\$399.00',
+                    '\$$price',
                     style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: blueColor),
                   ),
-                  const Text(
-                    'Sony WH-1000XM4',
-                    style: TextStyle(
+                  Text(
+                    name,
+                    style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
@@ -95,9 +107,9 @@ class ProductDetailsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Text(
-                    "CK One by Calvin Klein is a classic unisex fragrance, known for its fresh and clean scent. It's a versatile fragrance suitable for everyday wear.",
-                    style: TextStyle(),
+                  Text(
+                    description,
+                    style: const TextStyle(),
                   ),
                   Card(
                     child: ListTile(
