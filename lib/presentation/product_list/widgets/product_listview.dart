@@ -49,7 +49,7 @@ class ProductsListView extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => ProductDetailsPage(
                             price: productitems.price,
-                            imageUrl: productitems.images[index],
+                            imageUrl: productitems.images[0],
                             name: productitems.title,
                             description: productitems.description,
                           ),
@@ -88,7 +88,7 @@ class ProductsListView extends StatelessWidget {
                                           ? CircularProgressIndicator(
                                               strokeWidth: 2, color: blueColor)
                                           : Image.network(
-                                              productitems.images[index],
+                                              productitems.images[0],
                                               fit: BoxFit.cover,
                                             ),
                                     ),

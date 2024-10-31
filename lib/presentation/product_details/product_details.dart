@@ -16,6 +16,8 @@ class ProductDetailsPage extends StatelessWidget {
     required this.price,
   });
 
+  final String items = 'Edit';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +29,14 @@ class ProductDetailsPage extends StatelessWidget {
         actions: [
           Card(
             shape: const CircleBorder(),
-            child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert_sharp,
-                  size: 28,
-                )),
+            child: PopupMenuButton(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text(items),
+                  onTap: () {},
+                )
+              ],
+            ),
           )
         ],
       ),
