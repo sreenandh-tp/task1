@@ -45,7 +45,7 @@ class UpdatePage extends StatelessWidget {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value == null) {
+                        if (value != null && value.isNotEmpty) {
                           return null;
                         }
                         return "Enter name please";
@@ -59,7 +59,7 @@ class UpdatePage extends StatelessWidget {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value == null) {
+                        if (value != null && value.isNotEmpty) {
                           return null;
                         }
                         return "Enter some price please";
@@ -75,7 +75,7 @@ class UpdatePage extends StatelessWidget {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value == null) {
+                        if (value != null && value.isNotEmpty) {
                           return null;
                         }
                         return "Enter discription please";
