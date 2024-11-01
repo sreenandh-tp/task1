@@ -24,6 +24,7 @@ class UpdatePage extends StatelessWidget {
         }
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text('Update Product Details'),
         ),
