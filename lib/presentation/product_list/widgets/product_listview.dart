@@ -48,10 +48,14 @@ class ProductsListView extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProductDetailsPage(
+                            id: productitems.id,
                             price: productitems.price,
                             imageUrl: productitems.images[0],
                             name: productitems.title,
                             description: productitems.description,
+                            rating: productitems.rating,
+                            stock: productitems.stock,
+                            category: productitems.category.toString(),
                           ),
                         ),
                       );

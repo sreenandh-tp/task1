@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sreenandh_machine_test/application/product/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sreenandh_machine_test/application/update_product/update_product_bloc.dart';
 import 'domain/d_i/injectable.dart';
 import 'presentation/product_list/product_list.dart';
 
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ProductBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<ProductBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<UpdateProductBloc>(),
+        )
+      ],
       child: MaterialApp(
         theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.white),

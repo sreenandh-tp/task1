@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -17,7 +17,7 @@ class ProductRepository implements IProductRep {
       if (response.statusCode == 200 || response.statusCode == 201) {
         // log(response.data.toString());
         var data = ProductModel.fromJson(response.data);
-        log("NNNNNNNNNNNNNN${data.toString()}");
+
         return right(data.products);
       } else {
         return left(

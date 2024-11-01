@@ -26,7 +26,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         final Either<MainFailures, List<Product>> productOption =
             await iProductRep.getProductsDetails();
 
-         print("BBBBBbbbb${productOption.toString()}");
+        if (state.products.isNotEmpty) {
+          emit(ProductState(
+            isLoading: false,
+            products: state.products,
+            isError: false,
+          ));
+          return;
+        }
 
         emit(
           productOption.fold(

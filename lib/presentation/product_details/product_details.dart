@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:sreenandh_machine_test/presentation/update_product/update_page.dart';
 
 import '../../core/colors.dart';
 
 class ProductDetailsPage extends StatelessWidget {
+  final int id;
   final String imageUrl;
   final String name;
   final String description;
   final double price;
+  final double rating;
+  final int stock;
+  final String category;
 
-  const ProductDetailsPage({
+  ProductDetailsPage({
     super.key,
     required this.imageUrl,
     required this.name,
     required this.description,
     required this.price,
+    required this.id,
+    required this.rating,
+    required this.stock,
+    required this.category,
   });
 
   final String items = 'Edit';
+
+  final updateIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +44,16 @@ class ProductDetailsPage extends StatelessWidget {
               itemBuilder: (context) => [
                 PopupMenuItem(
                   child: Text(items),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdatePage(
+                          id: id,
+                        ),
+                      ),
+                    );
+                  },
                 )
               ],
             ),
@@ -79,6 +99,34 @@ class ProductDetailsPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Rating: ${rating.toString()}⭐',
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        'Stock: $stock',
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        category,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                    ],
+                  ),
                   const Text(
                     'About Item :',
                     style: TextStyle(
@@ -107,7 +155,9 @@ class ProductDetailsPage extends StatelessWidget {
                       const Text(
                         'Reviews',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
                       ),
                     ],
                   ),
