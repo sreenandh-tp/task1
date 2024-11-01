@@ -96,7 +96,7 @@ class ProductsListView extends StatelessWidget {
                                               fit: BoxFit.cover,
                                             ),
                                     ),
-                                    const SizedBox(height: 15),
+                                    // const SizedBox(height: 15),
                                     Text(
                                       productitems.title,
                                       style: const TextStyle(

@@ -6,6 +6,7 @@ import '../../application/update_product/update_product_bloc.dart';
 class UpdatePage extends StatelessWidget {
   final int id;
   UpdatePage({super.key, required this.id});
+  final GlobalKey<FormState> globalKey = GlobalKey();
 
   final productnameController = TextEditingController();
   final productpriceController = TextEditingController();
@@ -15,6 +16,7 @@ class UpdatePage extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {});
     return BlocListener<UpdateProductBloc, UpdateProductState>(
       listener: (context, state) {
+        // print("vvvvvvv${state.idUpdate}");
         if (state.idUpdate) {
           const snackBar = SnackBar(
             content: Text('Product Details Updated Successfully.....'),
@@ -32,67 +34,93 @@ class UpdatePage extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: BlocBuilder<UpdateProductBloc, UpdateProductState>(
             builder: (context, state) {
-              return Column(
-                children: [
-                  TextFormField(
-                    controller: productnameController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter New Name',
-                      border: OutlineInputBorder(),
+              return Form(
+                key: globalKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: productnameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter New Name',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null) {
+                          return null;
+                        }
+                        return "Enter name please";
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: productpriceController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter New Price',
-                      border: OutlineInputBorder(),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: productpriceController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter New Price',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null) {
+                          return null;
+                        }
+                        return "Enter some price please";
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: productdiscriptionController,
-                    maxLines: 5,
-                    minLines: 3,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter New Discription',
-                      border: OutlineInputBorder(),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: productdiscriptionController,
+                      maxLines: 5,
+                      minLines: 3,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter New Discription',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null) {
+                          return null;
+                        }
+                        return "Enter discription please";
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  state.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
-                        )
-                      : GestureDetector(
-                          onTap: () {
-                            BlocProvider.of<UpdateProductBloc>(context).add(
-                              UpdateProductEvent.updateProduct(
-                                productID: id,
-                                description: productdiscriptionController.text,
-                                productname: productnameController.text,
-                                productprice:
-                                    int.parse(productpriceController.text),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 50,
-                            width: double.infinity,
-                            color: Colors.deepPurple,
-                            child: const Center(
-                              child: Text(
-                                'SUBMIT',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
+                    const SizedBox(height: 20),
+                    state.isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              if (globalKey.currentState?.validate() ?? true) {
+                                BlocProvider.of<UpdateProductBloc>(context).add(
+                                  UpdateProductEvent.updateProduct(
+                                    productID: id,
+                                    description:
+                                        productdiscriptionController.text,
+                                    productname: productnameController.text,
+                                    productprice:
+                                        int.parse(productpriceController.text),
+                                  ),
+                                );
+                              } else {
+                                return;
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              width: double.infinity,
+                              color: Colors.deepPurple,
+                              child: const Center(
+                                child: Text(
+                                  'SUBMIT',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                ],
+                          )
+                  ],
+                ),
               );
             },
           ),
