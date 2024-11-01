@@ -17,19 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UpdateProductEvent {
   int get productID => throw _privateConstructorUsedError;
+  String get productname => throw _privateConstructorUsedError;
+  int get productprice => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int productID) updateProduct,
+    required TResult Function(
+            int productID, String productname, int productprice)
+        updateProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int productID)? updateProduct,
+    TResult? Function(int productID, String productname, int productprice)?
+        updateProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int productID)? updateProduct,
+    TResult Function(int productID, String productname, int productprice)?
+        updateProduct,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +67,7 @@ abstract class $UpdateProductEventCopyWith<$Res> {
           UpdateProductEvent value, $Res Function(UpdateProductEvent) then) =
       _$UpdateProductEventCopyWithImpl<$Res, UpdateProductEvent>;
   @useResult
-  $Res call({int productID});
+  $Res call({int productID, String productname, int productprice});
 }
 
 /// @nodoc
@@ -78,11 +84,21 @@ class _$UpdateProductEventCopyWithImpl<$Res, $Val extends UpdateProductEvent>
   @override
   $Res call({
     Object? productID = null,
+    Object? productname = null,
+    Object? productprice = null,
   }) {
     return _then(_value.copyWith(
       productID: null == productID
           ? _value.productID
           : productID // ignore: cast_nullable_to_non_nullable
+              as int,
+      productname: null == productname
+          ? _value.productname
+          : productname // ignore: cast_nullable_to_non_nullable
+              as String,
+      productprice: null == productprice
+          ? _value.productprice
+          : productprice // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -96,7 +112,7 @@ abstract class _$$UpdateProductImplCopyWith<$Res>
       __$$UpdateProductImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int productID});
+  $Res call({int productID, String productname, int productprice});
 }
 
 /// @nodoc
@@ -111,11 +127,21 @@ class __$$UpdateProductImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? productID = null,
+    Object? productname = null,
+    Object? productprice = null,
   }) {
     return _then(_$UpdateProductImpl(
       productID: null == productID
           ? _value.productID
           : productID // ignore: cast_nullable_to_non_nullable
+              as int,
+      productname: null == productname
+          ? _value.productname
+          : productname // ignore: cast_nullable_to_non_nullable
+              as String,
+      productprice: null == productprice
+          ? _value.productprice
+          : productprice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -124,14 +150,21 @@ class __$$UpdateProductImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateProductImpl implements UpdateProduct {
-  const _$UpdateProductImpl({required this.productID});
+  const _$UpdateProductImpl(
+      {required this.productID,
+      required this.productname,
+      required this.productprice});
 
   @override
   final int productID;
+  @override
+  final String productname;
+  @override
+  final int productprice;
 
   @override
   String toString() {
-    return 'UpdateProductEvent.updateProduct(productID: $productID)';
+    return 'UpdateProductEvent.updateProduct(productID: $productID, productname: $productname, productprice: $productprice)';
   }
 
   @override
@@ -140,11 +173,16 @@ class _$UpdateProductImpl implements UpdateProduct {
         (other.runtimeType == runtimeType &&
             other is _$UpdateProductImpl &&
             (identical(other.productID, productID) ||
-                other.productID == productID));
+                other.productID == productID) &&
+            (identical(other.productname, productname) ||
+                other.productname == productname) &&
+            (identical(other.productprice, productprice) ||
+                other.productprice == productprice));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, productID);
+  int get hashCode =>
+      Object.hash(runtimeType, productID, productname, productprice);
 
   @JsonKey(ignore: true)
   @override
@@ -155,27 +193,31 @@ class _$UpdateProductImpl implements UpdateProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int productID) updateProduct,
+    required TResult Function(
+            int productID, String productname, int productprice)
+        updateProduct,
   }) {
-    return updateProduct(productID);
+    return updateProduct(productID, productname, productprice);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int productID)? updateProduct,
+    TResult? Function(int productID, String productname, int productprice)?
+        updateProduct,
   }) {
-    return updateProduct?.call(productID);
+    return updateProduct?.call(productID, productname, productprice);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int productID)? updateProduct,
+    TResult Function(int productID, String productname, int productprice)?
+        updateProduct,
     required TResult orElse(),
   }) {
     if (updateProduct != null) {
-      return updateProduct(productID);
+      return updateProduct(productID, productname, productprice);
     }
     return orElse();
   }
@@ -210,11 +252,17 @@ class _$UpdateProductImpl implements UpdateProduct {
 }
 
 abstract class UpdateProduct implements UpdateProductEvent {
-  const factory UpdateProduct({required final int productID}) =
-      _$UpdateProductImpl;
+  const factory UpdateProduct(
+      {required final int productID,
+      required final String productname,
+      required final int productprice}) = _$UpdateProductImpl;
 
   @override
   int get productID;
+  @override
+  String get productname;
+  @override
+  int get productprice;
   @override
   @JsonKey(ignore: true)
   _$$UpdateProductImplCopyWith<_$UpdateProductImpl> get copyWith =>
@@ -226,6 +274,8 @@ mixin _$UpdateProductState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get idUpdate => throw _privateConstructorUsedError;
   List<UpdateProduct> get updatedList => throw _privateConstructorUsedError;
+  String? get productname => throw _privateConstructorUsedError;
+  int? get price => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UpdateProductStateCopyWith<UpdateProductState> get copyWith =>
@@ -238,7 +288,12 @@ abstract class $UpdateProductStateCopyWith<$Res> {
           UpdateProductState value, $Res Function(UpdateProductState) then) =
       _$UpdateProductStateCopyWithImpl<$Res, UpdateProductState>;
   @useResult
-  $Res call({bool isLoading, bool idUpdate, List<UpdateProduct> updatedList});
+  $Res call(
+      {bool isLoading,
+      bool idUpdate,
+      List<UpdateProduct> updatedList,
+      String? productname,
+      int? price});
 }
 
 /// @nodoc
@@ -257,6 +312,8 @@ class _$UpdateProductStateCopyWithImpl<$Res, $Val extends UpdateProductState>
     Object? isLoading = null,
     Object? idUpdate = null,
     Object? updatedList = null,
+    Object? productname = freezed,
+    Object? price = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -271,6 +328,14 @@ class _$UpdateProductStateCopyWithImpl<$Res, $Val extends UpdateProductState>
           ? _value.updatedList
           : updatedList // ignore: cast_nullable_to_non_nullable
               as List<UpdateProduct>,
+      productname: freezed == productname
+          ? _value.productname
+          : productname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -283,7 +348,12 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool idUpdate, List<UpdateProduct> updatedList});
+  $Res call(
+      {bool isLoading,
+      bool idUpdate,
+      List<UpdateProduct> updatedList,
+      String? productname,
+      int? price});
 }
 
 /// @nodoc
@@ -300,6 +370,8 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? idUpdate = null,
     Object? updatedList = null,
+    Object? productname = freezed,
+    Object? price = freezed,
   }) {
     return _then(_$InitialImpl(
       isLoading: null == isLoading
@@ -314,6 +386,14 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._updatedList
           : updatedList // ignore: cast_nullable_to_non_nullable
               as List<UpdateProduct>,
+      productname: freezed == productname
+          ? _value.productname
+          : productname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -324,7 +404,9 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.isLoading,
       required this.idUpdate,
-      required final List<UpdateProduct> updatedList})
+      required final List<UpdateProduct> updatedList,
+      this.productname,
+      this.price})
       : _updatedList = updatedList;
 
   @override
@@ -340,8 +422,13 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
+  final String? productname;
+  @override
+  final int? price;
+
+  @override
   String toString() {
-    return 'UpdateProductState(isLoading: $isLoading, idUpdate: $idUpdate, updatedList: $updatedList)';
+    return 'UpdateProductState(isLoading: $isLoading, idUpdate: $idUpdate, updatedList: $updatedList, productname: $productname, price: $price)';
   }
 
   @override
@@ -354,12 +441,15 @@ class _$InitialImpl implements _Initial {
             (identical(other.idUpdate, idUpdate) ||
                 other.idUpdate == idUpdate) &&
             const DeepCollectionEquality()
-                .equals(other._updatedList, _updatedList));
+                .equals(other._updatedList, _updatedList) &&
+            (identical(other.productname, productname) ||
+                other.productname == productname) &&
+            (identical(other.price, price) || other.price == price));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, idUpdate,
-      const DeepCollectionEquality().hash(_updatedList));
+      const DeepCollectionEquality().hash(_updatedList), productname, price);
 
   @JsonKey(ignore: true)
   @override
@@ -372,7 +462,9 @@ abstract class _Initial implements UpdateProductState {
   const factory _Initial(
       {required final bool isLoading,
       required final bool idUpdate,
-      required final List<UpdateProduct> updatedList}) = _$InitialImpl;
+      required final List<UpdateProduct> updatedList,
+      final String? productname,
+      final int? price}) = _$InitialImpl;
 
   @override
   bool get isLoading;
@@ -380,6 +472,10 @@ abstract class _Initial implements UpdateProductState {
   bool get idUpdate;
   @override
   List<UpdateProduct> get updatedList;
+  @override
+  String? get productname;
+  @override
+  int? get price;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

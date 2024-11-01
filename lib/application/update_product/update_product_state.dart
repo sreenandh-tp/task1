@@ -6,13 +6,16 @@ class UpdateProductState with _$UpdateProductState {
     required bool isLoading,
     required bool idUpdate,
     required List<UpdateProduct> updatedList,
+    String? productname,
+    int? price,
   }) = _Initial;
 
   factory UpdateProductState.initial() {
     return const UpdateProductState(
-      isLoading: false,
-      idUpdate: false,
-      updatedList: [],
-    );
+        isLoading: false,
+        idUpdate: false,
+        updatedList: [],
+        productname: '',
+        price: 0);
   }
 }

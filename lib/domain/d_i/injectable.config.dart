@@ -20,6 +20,8 @@ import 'package:sreenandh_machine_test/domain/upadate_product/i_update_product.d
     as _i288;
 import 'package:sreenandh_machine_test/infrastructure/product_list/product_repository.dart'
     as _i811;
+import 'package:sreenandh_machine_test/infrastructure/update_product/update_product_rep.dart'
+    as _i1040;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -33,6 +35,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i2.IProductRep>(() => _i811.ProductRepository());
+    gh.lazySingleton<_i288.IUpdateProduct>(() => _i1040.UpdateProductRep());
     gh.factory<_i806.UpdateProductBloc>(
         () => _i806.UpdateProductBloc(gh<_i288.IUpdateProduct>()));
     gh.factory<_i86.ProductBloc>(() => _i86.ProductBloc(gh<_i2.IProductRep>()));
