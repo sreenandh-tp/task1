@@ -9,7 +9,7 @@ class UpdatePage extends StatelessWidget {
 
   final productnameController = TextEditingController();
   final productpriceController = TextEditingController();
-  // final productController = TextEditingController();
+  final productdiscriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {});
@@ -51,20 +51,7 @@ class UpdatePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Enter New Category',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Enter New Stock',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
+                    controller: productdiscriptionController,
                     maxLines: 5,
                     minLines: 3,
                     decoration: const InputDecoration(
@@ -84,6 +71,7 @@ class UpdatePage extends StatelessWidget {
                             BlocProvider.of<UpdateProductBloc>(context).add(
                               UpdateProductEvent.updateProduct(
                                 productID: id,
+                                description: productdiscriptionController.text,
                                 productname: productnameController.text,
                                 productprice:
                                     int.parse(productpriceController.text),

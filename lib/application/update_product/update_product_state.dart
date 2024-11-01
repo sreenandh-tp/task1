@@ -8,6 +8,7 @@ class UpdateProductState with _$UpdateProductState {
     required List<UpdateProduct> updatedList,
     String? productname,
     int? price,
+    String? description,
   }) = _Initial;
 
   factory UpdateProductState.initial() {
@@ -15,6 +16,7 @@ class UpdateProductState with _$UpdateProductState {
         isLoading: false,
         idUpdate: false,
         updatedList: [],
+        description: '',
         productname: '',
         price: 0);
   }

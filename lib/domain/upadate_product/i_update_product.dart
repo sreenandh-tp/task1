@@ -10,5 +10,6 @@ abstract class IUpdateProduct {
     required int productID,
     required String productname,
     required int price,
+    required String description,
   });
 }

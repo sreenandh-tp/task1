@@ -6,5 +6,6 @@ class UpdateProductEvent with _$UpdateProductEvent {
     required int productID,
     required String productname,
     required int productprice,
+    required String description,
   }) = UpdateProduct;
 }

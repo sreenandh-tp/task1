@@ -14,12 +14,14 @@ class UpdateProductRep implements IUpdateProduct {
   getUpdatedProduct(
       {required int productID,
       required String productname,
+      required String description,
       required int price}) async {
     try {
       final body = {
         "title": productname,
         "price": price,
         "id": productID,
+        "description": description,
       };
 
       final response = await Dio().put(

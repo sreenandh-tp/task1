@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sreenandh_machine_test/domain/core/mainFailures.dart';
+
 
 import 'package:sreenandh_machine_test/domain/upadate_product/i_update_product.dart';
 
@@ -26,7 +26,12 @@ class UpdateProductBloc extends Bloc<UpdateProductEvent, UpdateProductState> {
       var updatedProduct = await iUpdateProduct.getUpdatedProduct(
           productID: event.productID,
           productname: event.productname,
-          price: event.productprice);
+          price: event.productprice,
+          description: event.description
+          
+          
+          
+          );
     });
   }
 }
