@@ -32,6 +32,7 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.deepPurple[300],
       appBar: AppBar(
         leading: const Card(
@@ -113,6 +114,7 @@ class ProductDetailsPage extends StatelessWidget {
                       Text(
                         'Stock: $stock',
                         style: const TextStyle(
+                          color: Colors.green,
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
                         ),
@@ -121,6 +123,7 @@ class ProductDetailsPage extends StatelessWidget {
                       Text(
                         category,
                         style: const TextStyle(
+                          overflow: TextOverflow.ellipsis,
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
                         ),
