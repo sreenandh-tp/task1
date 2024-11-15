@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sreenandh_machine_test/core/colors.dart';
+import '../cart_products/product_cart.dart';
 import 'widgets/product_listview.dart';
 
 class ProductListPage extends StatelessWidget {
@@ -11,11 +12,18 @@ class ProductListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.menu),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(Icons.shopping_cart_rounded),
-          )
+              padding: const EdgeInsets.only(right: 10),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProductCartPage(),
+                        ));
+                  },
+                  icon: const Icon(Icons.shopping_cart)))
         ],
       ),
       body: Padding(
