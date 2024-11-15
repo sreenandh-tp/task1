@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sreenandh_machine_test/domain/product_list/i_product_rep.dart';
@@ -17,39 +18,63 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       (event, emit) async {
         emit(
           const ProductState(
-            isLoading: true,
-            products: [],
-            isError: false,
-          ),
+              isLoading: true,
+              products: [],
+              isError: false,
+              // isClicked: false,
+              // favList: [],
+              ),
         );
 
         final Either<MainFailures, List<Product>> productOption =
             await iProductRep.getProductsDetails();
 
         if (state.products.isNotEmpty) {
-          emit(ProductState(
-            isLoading: false,
-            products: state.products,
-            isError: false,
-          ));
+          emit(
+            ProductState(
+              // isClicked: false,
+              isLoading: false,
+              products: state.products,
+              isError: false,
+              // favList: [],
+            ),
+          );
           return;
         }
 
         emit(
           productOption.fold(
             (MainFailures f) => const ProductState(
-              isLoading: false,
-              products: [],
-              isError: true,
-            ),
+                // isClicked: false,
+                isLoading: false,
+                products: [],
+                isError: true,
+                // favList: []
+                ),
             (List<Product> s) => ProductState(
-              isLoading: false,
-              products: s,
-              isError: false,
-            ),
+                // isClicked: false,
+                isLoading: false,
+                products: s,
+                isError: false,
+                // favList: []
+                ),
           ),
         );
       },
     );
+    // List likedList = [];
+
+    // on<AddsTofav>(
+    //   (event, emit) {
+    //     likedList.add(event.id);
+    //     emit(
+    //       state.copyWith(
+    //         favList: likedList,
+    //       ),
+    //     );
+       
+    //     print(likedList);
+    //   },
+    // );
   }
 }

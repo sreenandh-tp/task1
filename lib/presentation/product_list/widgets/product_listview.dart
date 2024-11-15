@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sreenandh_machine_test/application/add_to_cart/add_to_cart_bloc.dart';
 import 'package:sreenandh_machine_test/core/colors.dart';
 import 'package:sreenandh_machine_test/presentation/product_details/product_details.dart';
 
+import '../../../application/favoriteproducts/favorite_products_bloc.dart';
 import '../../../application/product/product_bloc.dart';
 
 class ProductsListView extends StatelessWidget {
@@ -32,14 +32,17 @@ class ProductsListView extends StatelessWidget {
         } else if (state.isError) {
           return const Center(child: Text('Error while occured'));
         } else {
-          return Expanded(
+          return SizedBox(
+            height: size.height * 0.3,
             child: ListView.builder(
+              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: state.products.length,
               // padding: const EdgeInsets.all(10),
               itemBuilder: (context, index) {
                 final productitems = state.products[index];
-                log(productitems.toString());
+                // print("Upading");
+                // log(productitems.toString());
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
@@ -62,14 +65,13 @@ class ProductsListView extends StatelessWidget {
                     },
                     child: Card(
                       child: Container(
-                        height: size.height / 3,
                         width: size.width / 2.3,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 248, 248, 248),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: state.isLoading
                               ? CircularProgressIndicator(
                                   strokeWidth: 2, color: blueColor)
@@ -78,10 +80,48 @@ class ProductsListView extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    const Align(
+                                    Align(
                                       alignment: Alignment.topRight,
                                       child: SizedBox(
-                                        child: Icon(Icons.favorite_border),
+                                        child: BlocBuilder<FavoriteProductsBloc,
+                                            FavoriteProductsState>(
+                                          builder: (context, state) {
+                                            if (state.favLikeList
+                                                .contains(productitems.id)) {
+                                              return GestureDetector(
+                                                  onTap: () {
+                                                    context
+                                                        .read<
+                                                            FavoriteProductsBloc>()
+                                                        .add(
+                                                          RemoveFavItem(
+                                                              id: productitems
+                                                                  .id),
+                                                        );
+                                                  },
+                                                  child: const Icon(
+                                                    Icons.favorite_sharp,
+                                                    color: Colors.red,
+                                                  )
+                                                  // : const Icon(
+                                                  //     Icons.favorite_border),
+                                                  );
+                                            }
+                                            return GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<
+                                                        FavoriteProductsBloc>()
+                                                    .add(
+                                                      AddFavItems(
+                                                          id: productitems.id),
+                                                    );
+                                              },
+                                              child: const Icon(
+                                                  Icons.favorite_border),
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                     // const SizedBox(height: 10),
@@ -117,6 +157,36 @@ class ProductsListView extends StatelessWidget {
                                       style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.black87,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            context.read<AddToCartBloc>().add(
+                                                  AddToCart(
+                                                      product: productitems),
+                                                );
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                duration: Duration(seconds: 1),
+                                                content: Text(
+                                                    'Product Added To Cart'),
+                                              ),
+                                            );
+                                          },
+                                          icon: const Icon(
+                                            Icons.add_shopping_cart,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sreenandh_machine_test/application/favoriteproducts/favorite_products_bloc.dart';
 import 'package:sreenandh_machine_test/application/product/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sreenandh_machine_test/application/update_product/update_product_bloc.dart';
+import 'application/add_to_cart/add_to_cart_bloc.dart';
 import 'domain/d_i/injectable.dart';
 import 'presentation/product_list/product_list.dart';
 
@@ -24,6 +26,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<UpdateProductBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<FavoriteProductsBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => AddToCartBloc(),
         )
       ],
       child: MaterialApp(

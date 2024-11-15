@@ -10,6 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:sreenandh_machine_test/application/favoriteproducts/favorite_products_bloc.dart'
+    as _i342;
 import 'package:sreenandh_machine_test/application/product/product_bloc.dart'
     as _i86;
 import 'package:sreenandh_machine_test/application/update_product/update_product_bloc.dart'
@@ -34,6 +36,7 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i342.FavoriteProductsBloc>(() => _i342.FavoriteProductsBloc());
     gh.lazySingleton<_i2.IProductRep>(() => _i811.ProductRepository());
     gh.lazySingleton<_i288.IUpdateProduct>(() => _i1040.UpdateProductRep());
     gh.factory<_i806.UpdateProductBloc>(
