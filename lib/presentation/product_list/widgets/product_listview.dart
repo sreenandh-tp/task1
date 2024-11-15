@@ -163,6 +163,8 @@ class ProductsListView extends StatelessWidget {
                                     Align(
                                       alignment: Alignment.bottomRight,
                                       child: Container(
+                                        height: 40,
+                                        width: 40,
                                         decoration: BoxDecoration(
                                             color: Colors.black87,
                                             borderRadius:
