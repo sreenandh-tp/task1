@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sreenandh_machine_test/application/add_to_cart/add_to_cart_bloc.dart';
 import 'package:sreenandh_machine_test/core/colors.dart';
 import '../cart_products/product_cart.dart';
 import 'widgets/product_listview.dart';
@@ -15,15 +17,33 @@ class ProductListPage extends StatelessWidget {
         actions: [
           Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProductCartPage(),
-                        ));
-                  },
-                  icon: const Icon(Icons.shopping_cart)))
+              child: BlocBuilder<AddToCartBloc, AddToCartState>(
+                builder: (context, state) {
+                  return IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProductCartPage(),
+                            ));
+                      },
+                      icon: Row(
+                        children: [
+                          const Icon(Icons.shopping_cart),
+                          Container(
+                              height: 17,
+                              width: 17,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.red),
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                state.addToCartProduct!.length.toString(),
+                                style: const TextStyle(color: Colors.white),
+                              ))
+                        ],
+                      ));
+                },
+              ))
         ],
       ),
       body: Padding(

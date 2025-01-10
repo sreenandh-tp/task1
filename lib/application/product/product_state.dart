@@ -11,7 +11,7 @@ class ProductState with _$ProductState {
   }) = _ProductState;
 
   factory ProductState.initial() {
-    return  ProductState(
+    return const  ProductState(
       isLoading: false,
       products: [],
       isError: false,

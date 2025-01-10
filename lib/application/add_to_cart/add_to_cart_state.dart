@@ -1,12 +1,12 @@
 part of 'add_to_cart_bloc.dart';
 
 class AddToCartState {
-  final List<Product> addToCartProduct;
+   final List<Product> addToCartProduct;
 
-  AddToCartState({required this.addToCartProduct});
+
+  AddToCartState({ required this.addToCartProduct});
 }
 
-class InitialState extends AddToCartState{
+class InitialState extends AddToCartState {
   InitialState({required super.addToCartProduct});
-
 }
