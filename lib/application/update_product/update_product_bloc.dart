@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sreenandh_machine_test/domain/core/mainFailures.dart';
+
 import 'package:sreenandh_machine_test/domain/upadate_product/i_update_product.dart';
 
 part 'update_product_event.dart';

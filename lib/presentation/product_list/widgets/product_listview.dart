@@ -33,7 +33,7 @@ class ProductsListView extends StatelessWidget {
           return const Center(child: Text('Error while occured'));
         } else {
           return SizedBox(
-            height: size.height * 0.3,
+            height: size.height * 0.32,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
@@ -160,36 +160,65 @@ class ProductsListView extends StatelessWidget {
                                       ),
                                     ),
 
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Container(
-                                        height: 40,
-                                        width: 40,
-                                        decoration: BoxDecoration(
-                                            color: Colors.black87,
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        child: IconButton(
-                                          onPressed: () {
-                                            context.read<AddToCartBloc>().add(
-                                                  AddToCart(
-                                                      product: productitems),
-                                                );
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              const SnackBar(
-                                                duration: Duration(seconds: 1),
-                                                content: Text(
-                                                    'Product Added To Cart'),
-                                              ),
-                                            );
-                                          },
-                                          icon: const Icon(
-                                            Icons.add_shopping_cart,
-                                            color: Colors.white,
+                                    BlocBuilder<AddToCartBloc, AddToCartState>(
+                                      builder: (context, state) {
+                                        return Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: Container(
+                                            height: 40,
+                                            width: 40,
+                                            decoration: BoxDecoration(
+                                                color: Colors.black87,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  final cartItems1 = context
+                                                      .read<AddToCartBloc>()
+                                                      .state
+                                                      .addToCartProduct;
+
+                                                  if (cartItems1!.any(
+                                                    (element) =>
+                                                        element.id ==
+                                                        productitems.id,
+                                                  )) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      const SnackBar(
+                                                        duration: Duration(
+                                                            seconds: 1),
+                                                        content: Text(
+                                                            'Product Already Added To Cart'),
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    context
+                                                        .read<AddToCartBloc>()
+                                                        .add(AddToCart(
+                                                            product:
+                                                                productitems));
+                                                  }
+
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    const SnackBar(
+                                                      duration:
+                                                          Duration(seconds: 1),
+                                                      content: Text(
+                                                          'Product Added To Cart'),
+                                                    ),
+                                                  );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.shopping_bag,
+                                                  color: Colors.white,
+                                                  size: 18,
+                                                )),
                                           ),
-                                        ),
-                                      ),
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),

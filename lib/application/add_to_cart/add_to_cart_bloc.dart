@@ -14,7 +14,30 @@ class AddToCartBloc extends Bloc<AddToCartEvent, AddToCartState> {
       final addCartItems = List<Product>.from(state.addToCartProduct)
         ..add(event.product);
 
-      emit(AddToCartState(addToCartProduct: addCartItems));
+      emit(
+        AddToCartState(addToCartProduct: addCartItems),
+      );
+    });
+
+    List updateList = [];
+    on<Incrememnt>((event, emit) {
+      List<Product> newData = List.from(event.product.map((product) {
+        if (product.id == event.cartItemID) {
+          return Product(
+            id: product.id,
+            title: product.title,
+            description: product.description,
+            category: product.category,
+            price: product.price,
+            rating: product.rating,
+            stock: product.stock + 1,
+            images: product.images,
+            thumbnail: product.thumbnail,
+          );
+        }
+        return product;
+      }).toList());
+      emit(AddToCartState(addToCartProduct: newData));
     });
   }
 }

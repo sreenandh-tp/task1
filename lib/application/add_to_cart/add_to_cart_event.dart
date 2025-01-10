@@ -8,3 +8,10 @@ class AddToCart extends AddToCartEvent {
 
   AddToCart({required this.product});
 }
+
+class Incrememnt extends AddToCartEvent {
+  final List<Product> product;
+  final int cartItemID;
+
+  Incrememnt({required this.cartItemID,required this.product});
+}

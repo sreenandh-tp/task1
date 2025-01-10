@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sreenandh_machine_test/application/update_product/update_product_bloc.dart'
-    as bloc;
+import 'package:sreenandh_machine_test/application/update_product/update_product_bloc.dart' as bloc;
+   
 import 'package:sreenandh_machine_test/domain/core/api_url.dart';
 import 'package:sreenandh_machine_test/domain/core/mainFailures.dart';
 import 'package:sreenandh_machine_test/domain/upadate_product/i_update_product.dart';
